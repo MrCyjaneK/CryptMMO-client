@@ -1,21 +1,12 @@
-//import { setCookie, getCookie } from './cookie.js'
+import post from './request.js'
+import urid from './uuidv4.js'
 
-export default function user() {
+export default async function user() {
     let request = {
-        "urid": "UniqueRequestId",
+        "urid": urid(),
         "method": "getUser",
         "params": null
     }
-    let response = {
-        "request": request,
-        "ok": true,
-        "urid": request.urid,
-        "response": {
-            "name": "UserName",
-            "balance": 15.00,
-            "loggedin": false
-        },
-        "error": null
-    }
+    response = await post(request);
     return response.response;
 }
