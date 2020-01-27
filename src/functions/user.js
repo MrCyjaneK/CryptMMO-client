@@ -7,6 +7,6 @@ export default async function user() {
         "method": "getUser",
         "params": null
     }
-    response = await post(request);
+    let response = await post(request);
     return response.response;
 }

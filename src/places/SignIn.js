@@ -10,10 +10,11 @@ export default function SignIn() {
             onSuccess={responseGoogle}
             onFailure={fuck}
             cookiePolicy={'single_host_origin'}
-          />
+        />
     )
 }
 const responseGoogle = (response) => {
+    // True is for isLogin
     post(response.tokenObj.access_token,true)
 }
 const fuck = (fuc) => {

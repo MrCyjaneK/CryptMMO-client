@@ -32,7 +32,7 @@ function Alert(props) {
 }
 function AlertDialog(content) {
     return (
-        <Snackbar 
+        <Snackbar
             open={true}
             anchorOrigin={{ "vertical": "bottom", "horizontal": "left" }}
             >
