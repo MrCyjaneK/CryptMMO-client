@@ -5,28 +5,35 @@ export default function post(data,isLogin = false) {
     try {
         if (isLogin) {
             // Remove all cookies
-            cleanCookies()
-            let cookie = sendData(
-                {
-                    "urid": urid(),
-                    "method": 'login',
-                    "params": data
-                }
-            )
-            setCookie('authtoken',cookie.response.cookie);
-            window.location.href = "/"; //Reload
-            return 0;
+            return userLogin();
         }
         let params = data;
         params.auth = {
             "cookie": getCookie('authtoken')
         }
         let resp = sendData(params);
-        return resp;
+        // Check if response is ok.
+        if (resp.ok) {
+            return resp;
+        } else {
+            //renderDialog("An critical (probably) server-side error happened.\nHowever, server have provided following information:\n"+resp.error.message, "Engine crashed!", 'alert');
+            console.error(resp);
+        }
     } catch (e) {
         renderDialog("We had some troubles with client-sever communication.", "Engine crashed!", 'alert');
         console.error(e);
-        return null;
+    }
+
+    function userLogin() {
+        cleanCookies();
+        let cookie = sendData({
+            "urid": urid(),
+            "method": 'login',
+            "params": data
+        });
+        setCookie('authtoken', cookie.response.cookie);
+        window.location.href = "/"; //Reload
+        return 0;
     }
 }
 function sendData (params) {

@@ -8,24 +8,37 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
 import Button from '@material-ui/core/Button';
-
+import post from '../functions/request.js';
 import handleClick from '../functions/handleClick.js';
 
-let rows = [
-    createData('Sword','desc1',1),
-    createData('Helmet','desc2',2),
-    createData('Breastplate','desc3',3),
-    createData('Sword','desc1',1),
-    createData('Helmet','desc2',2),
-    createData('Breastplate','desc3',3),
-    createData('Sword','desc1',1),
-    createData('Helmet','desc2',2),
-    createData('Breastplate','desc3',3),
-    createData('Sword','desc1',1),
-    createData('Helmet','desc2',2),
-    createData('Breastplate','desc3',3)
-]
+let request = {
+    "urid": "UniqueRequestId",
+    "method": "getShopCategories",
+    "params": null
+}
+
+let response;
+let rows = [];
+try {
+    response = post(request);
+    // eslint-disable-next-line
+    response.response.categories.map((category) => {
+        //                     Name         , Description        , ID
+        rows.push(createData(category.name,category.description,category.id));
+    })
+} catch (e) {
+    response = [];
+}
+console.log(rows)
 export default function Shop(props) {
+    if (response === []) {
+        response = post(request);
+        // eslint-disable-next-line
+        response.response.categories.map((category) => {
+            //                     Name         , Description        , ID
+            rows.push(createData(category.name,category.description,category.id));
+        })
+    }
     return (
         <div id="shopTable">
             <TableContainer component={Paper}>

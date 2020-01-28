@@ -5,59 +5,26 @@ import ButtonGroup from '@material-ui/core/ButtonGroup';
 import GetIcon from "../functions/GetIcon.js"
 import handleClick from '../functions/handleClick.js';
 //TODO: Make api request to get all buttons in here.
-
+import post from '../functions/request.js';
+// In some rare cases we can cache it for later...
+//Because it is less likely that menu will be updated that quickly...
 let request = {
     "urid": "UniqueRequestId",
     "method": "getCastleMenu",
     "params": null
 }
-
-let response = {
-    "request": request,
-    "ok": true,
-    "urid": request.urid,
-    "response": {
-        "menu": [
-            [
-                {
-                    "text": "AliÐoge",
-                    "icon": "LocalMall",
-                    "key": "castleShop",
-                    "action": "render:Shop",
-                    "size": "50%"
-                },
-                {
-                    "text": "ReÐolud",
-                    "icon": "AccountBalance",
-                    "key": "castleBank",
-                    "action": "render:Bank",
-                    "size": "50%"
-                },
-            ],
-            [
-                {
-                    "text": "Battle",
-                    "icon": "Adb",
-                    "key": "castleBattle",
-                    "action": "render:Battle",
-                    "size": "50%"
-                },
-                {
-                    "text": "Tavern",
-                    "icon": "OutdoorGrill",
-                    "key": "castleTavern",
-                    "action": "render:Tavern",
-                    "size": "50%"
-                },
-            ]
-        ]
-    },
-    "error": null
+let menuarray;
+try {
+    menuarray = post(request);
+    menuarray = menuarray.response.menu;
+} catch (e) {
+    menuarray = [];
 }
-
-let menuarray = response.response.menu;
-
 export default function Castle(props) {
+    if (menuarray === []) {
+        menuarray = post(request);
+        menuarray = menuarray.response.menu;
+    }
     return (
         <div>
             <Typography variant="h4">TODO: Put something here</Typography>

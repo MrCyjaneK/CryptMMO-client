@@ -6,7 +6,9 @@ import 'typeface-roboto';
 import renderGameContent from './functions/renderGameContent.js';
 import SignIn from './places/SignIn.js';
 import user from './functions/user.js';
+import renderDialog from './functions/renderDialog.js';
 
+try {
 user()
     .then(fetchedUser => {
         if (fetchedUser.loggedin) {
@@ -20,6 +22,10 @@ user()
         , document.getElementById('root'));
         }
     })
+} catch (e) {
+    console.error(e);
+    renderDialog("Error with initializing game roots, try cleaning cookies.", "Engine crashed!", 'alert');
+}
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
