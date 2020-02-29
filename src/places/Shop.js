@@ -29,7 +29,7 @@ try {
 } catch (e) {
     response = [];
 }
-console.log(rows)
+//console.log(rows)
 export default function Shop(props) {
     if (response === []) {
         response = post(request);
@@ -54,7 +54,7 @@ export default function Shop(props) {
                     {rows.map((row,i) => (
                         <TableRow key={i}>
                             <TableCell component="th" scope="row">
-                                {row.category}
+                                {row.category.substr(0,32)}
                             </TableCell>
                             <TableCell align="right">{row.description}</TableCell>
                             <TableCell align="right" style={{"width": "30%"}}>
@@ -74,10 +74,3 @@ export default function Shop(props) {
 function createData(category,description,opencategory) {
     return {category,description,opencategory};
 }
-
-
-
-
-
-
-

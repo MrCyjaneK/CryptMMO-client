@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 
 import handleClick from '../functions/handleClick.js';
+import post from '../functions/request.js';
 
 export default function ShopCategory(props) {
     let id = props;
@@ -22,39 +23,8 @@ export default function ShopCategory(props) {
         }
     }
 
-    let response = {
-        "request": request,
-        "ok": true,
-        "urid": request.urid,
-        "response": {
-            "items": [
-                {
-                    "id": 1,
-                    "name": "Wooden Sword",
-                    "type": "Common",
-                    "attack": 0.1,
-                    "defense": 0,
-                    "weight": 0.5,
-                    "speed": 0,
-                    "price": 0,
-                    "description": "Wooden sword, it ain't much but it's free."
-                },
-                {
-                    "id": 1,
-                    "name": "I'd add more but no",
-                    "type": "Common",
-                    "attack": 0.2,
-                    "defense": 0,
-                    "weight": 1,
-                    "speed": 0,
-                    "price": 0,
-                    "description": "When I finish api it will work"
-                }
-            ]
-        },
-        "error": null
-    }
-    
+    let response = post(request);
+
     return (
         <div id="shopTable">
             <TableContainer component={Paper}>
@@ -71,7 +41,7 @@ export default function ShopCategory(props) {
                     {response.response.items.map((row,i) => (
                         <TableRow key={i}>
                             <TableCell component="th" scope="row">
-                                {row.name}
+                                {row.name.substr(0,32)}
                             </TableCell>
                             <TableCell align="right">{row.type}</TableCell>
                             <TableCell align="right">{row.attack}</TableCell>
