@@ -1,3 +1,4 @@
+import post from './request.js';
 export default function getString(textname, defaulttxt = "getString:undefined", language = "user") {
 
     language = language.toUpperCase();
@@ -5,7 +6,7 @@ export default function getString(textname, defaulttxt = "getString:undefined", 
     if (language === 'USER') {
         language = 'EN'; //TODO...
     }
-    
+
     //Example request
 
     let request = {
@@ -17,6 +18,7 @@ export default function getString(textname, defaulttxt = "getString:undefined", 
         }
     }
 
+    /*
     let response = {
         "request": request,
         "ok": true,
@@ -24,6 +26,7 @@ export default function getString(textname, defaulttxt = "getString:undefined", 
         "response": textname+":"+defaulttxt,
         "error": null
     }
-    
+    */
+    let response = post(request);
     return response.response;
 }

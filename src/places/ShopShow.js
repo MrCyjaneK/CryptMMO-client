@@ -6,6 +6,8 @@ import renderDialog from '../functions/renderDialog.js';
 
 import Button from '@material-ui/core/Button';
 
+import post from '../functions/request.js';
+
 export default function ShopShow(props) {
     let id = props;
     //Example request:
@@ -15,8 +17,8 @@ export default function ShopShow(props) {
         "params": {
             "id": id
         }
-    }  
-    let response = {
+    }
+    /*let response = {
         "request": request,
         "ok": true,
         "urid": request.urid,
@@ -35,7 +37,8 @@ export default function ShopShow(props) {
             }
         },
         "error": null
-    }
+    }*/
+    let response = post(request);
     let item = response.response.item;
     return (
         <div style={{"textAlign": "center", "width": "100%"}} id="shopItemTable">
