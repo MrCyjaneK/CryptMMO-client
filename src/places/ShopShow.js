@@ -7,6 +7,7 @@ import renderDialog from '../functions/renderDialog.js';
 import Button from '@material-ui/core/Button';
 
 import post from '../functions/request.js';
+import handleClick from '../functions/handleClick.js';
 
 export default function ShopShow(props) {
     let id = props;
@@ -83,5 +84,30 @@ export default function ShopShow(props) {
 }
 
 function buyItem (itemid) {
-    renderDialog("Purchased item for price. And some longer info and stuff you know what is this about right?","Purchased item!","snack")
+    let request = {
+        "urid": "UniqueRequestId",
+        "method": "buyShopItem",
+        "params": {
+            "id": itemid
+        }
+    }
+
+    // Example response:
+    let response = {
+        "request": request,
+        "ok": true,
+        "urid": request.urid,
+        "response": {
+            "ok": Math.round(Math.random()), // Randomize success and fail messages
+            "error": "Unable to purchase >item< you need to have >69< crypt (or you can't have more than >1< >item<)",
+            "message": "Purchased >item< for >69< crypt!"
+        },
+        "error": null
+    }
+    if (response.response.ok) {
+        renderDialog(response.response.message,"Purchased item!","snack")
+        handleClick("e", "render:showInventoryItem|1")
+    } else {
+        renderDialog(response.response.error,"Failed","snack")
+    }
 }
