@@ -8,6 +8,8 @@ import ShopCategory from '../places/ShopCategory.js';
 import ShopShow from '../places/ShopShow.js';
 import Bank from '../places/Bank.js';
 import Quest from '../places/Quest.js';
+import ShowInventoryItem from '../places/ShowInventoryItem.js';
+
 
 export default function renderGameContent (act) {
     let action = act.split(',')[0].toLowerCase();
@@ -50,6 +52,12 @@ export default function renderGameContent (act) {
     if (action === 'quest') {
         ReactDOM.render(
             Quest()
+        , document.getElementById('gamecontent'));
+        return true;
+    }
+    if (action === 'showinventoryitem') {
+        ReactDOM.render(
+            ShowInventoryItem(act.split(',')[1])
         , document.getElementById('gamecontent'));
         return true;
     }

@@ -2,45 +2,45 @@ import React from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import getString from '../functions/getString.js';
-import renderDialog from '../functions/renderDialog.js';
+//import renderDialog from '../functions/renderDialog.js';
 
 import Button from '@material-ui/core/Button';
 
-import post from '../functions/request.js';
-import handleClick from '../functions/handleClick.js';
+//import post from '../functions/request.js';
 
+export default function ShowInventoryItem(props) {
+    let id = props
 
-export default function ShopShow(props) {
-    let id = props;
-    //Example request:
     let request = {
         "urid": "UniqueRequestId",
-        "method": "getShopItem",
+        "method": "getUserItem",
         "params": {
             "id": id
         }
     }
-    /*let response = {
+    let response = {
         "request": request,
         "ok": true,
         "urid": request.urid,
         "response": {
             "item": {
-                "id": 1,
+                "id": id,
                 "name": "Wooden Sword",
                 "type": "Common",
                 "attack": 0.1,
                 "defense": 0,
                 "weight": 0.5,
                 "speed": 0,
-                "price": 0,
+                "quantity": 1,
+                "equipped": Math.round(Math.random()),
                 "description": "Wooden sword, it ain't much but it's free.",
                 "icon": "/images/items/wooden_sword.png"
-            }
+            },
+            "message": "Item not found.",
+            "error": Math.round(Math.random())
         },
         "error": null
-    }*/
-    let response = post(request);
+    }
     let item = response.response.item;
     return (
         <div style={{"textAlign": "center", "width": "100%"}} id="shopItemTable">
@@ -66,49 +66,31 @@ export default function ShopShow(props) {
             </Typography>
             <hr />
             <Typography variant="body1">
-                {getString('POWER_SPEED','Speed')}: {item.price}
+                {getString('POWER_SPEED','Speed')}: {item.speed}
             </Typography>
             <hr />
             <Typography variant="body1">
-                {getString('POWER_PRICE','Price')}: {item.price}
+                {getString('STRING_QUANTITY','Quantity')}: {item.quantity}
             </Typography>
             <hr />
             <Typography variant="body1">
                 {getString('ITEM_DESC_'+item.id,item.description)}
             </Typography>
             <hr />
-            <Button variant="contained" color="primary" onClick={(() => buyItem(item.id))}>
-                Buy
+            <Button variant="contained" color="primary" onClick={(() => equipItem(item.id))}>
+                Equip
+            </Button>
+            <Button variant="contained" color="primary" onClick={(() => sellItem(item.id))}>
+                Sell
             </Button>
         </div>
     )
 }
 
-function buyItem (itemid) {
-    let request = {
-        "urid": "UniqueRequestId",
-        "method": "buyShopItem",
-        "params": {
-            "id": itemid
-        }
-    }
+function equipItem(itemid) {
+    console.log("#TODO");
+}
 
-    // Example response:
-    let response = {
-        "request": request,
-        "ok": true,
-        "urid": request.urid,
-        "response": {
-            "ok": Math.round(Math.random()), // Randomize success and fail messages
-            "error": "Unable to purchase >item< you need to have >69< crypt (or you can't have more than >1< >item<)",
-            "message": "Purchased >item< for >69< crypt!"
-        },
-        "error": null
-    }
-    if (response.response.ok) {
-        renderDialog(response.response.message,"Purchased item!","snack")
-        handleClick("e", "render:showInventoryItem,1")
-    } else {
-        renderDialog(response.response.error,"Failed","snack")
-    }
+function sellItem(itemid) {
+    console.log("#TODO");
 }

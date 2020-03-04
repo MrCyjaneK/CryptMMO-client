@@ -1,5 +1,5 @@
 export default function getMenuArray () {
-    
+
     // Example request
     let request = {
         "urid": "UniqueRequestId",
@@ -42,10 +42,10 @@ export default function getMenuArray () {
                         "action": "render:Hero"
                     },
                     {
-                        "text": "The Big War",
+                        "text": "Scanner",
                         "icon": "Public",
-                        "key": "drawerTheBigWar",
-                        "action": "render:TheBigWar"
+                        "key": "drawerTheScanner",
+                        "action": "render:TheScanner"
                     }
                 ]
             ]
