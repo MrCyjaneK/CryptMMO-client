@@ -1,4 +1,4 @@
-//import React from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 
 import Home from '../places/Home.js';
@@ -9,7 +9,9 @@ import ShopShow from '../places/ShopShow.js';
 import Bank from '../places/Bank.js';
 import Quest from '../places/Quest.js';
 import ShowInventoryItem from '../places/ShowInventoryItem.js';
+import Hero from "../places/Hero.js";
 
+import TheScanner_index from '../places/TheScanner/index.js';
 
 export default function renderGameContent (act) {
     let action = act.split(',')[0].toLowerCase();
@@ -59,6 +61,18 @@ export default function renderGameContent (act) {
         ReactDOM.render(
             ShowInventoryItem(act.split(',')[1])
         , document.getElementById('gamecontent'));
+        return true;
+    }
+    if (action === 'thescanner/index') {
+        ReactDOM.render(
+            <TheScanner_index />
+        , document.getElementById('gamecontent')); // I think that it should be root...
+        return true;
+    }
+    if (action === 'hero') {
+        ReactDOM.render(
+            <Hero />
+        , document.getElementById('gamecontent')); // I think that it should be root...
         return true;
     }
     return false;

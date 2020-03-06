@@ -45,7 +45,7 @@ export default function getMenuArray () {
                         "text": "Scanner",
                         "icon": "Public",
                         "key": "drawerTheScanner",
-                        "action": "render:TheScanner"
+                        "action": "render:TheScanner/index"
                     }
                 ]
             ]

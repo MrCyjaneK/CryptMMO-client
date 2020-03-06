@@ -50,7 +50,7 @@ export default function Quest() {
           <TableRow>
             <TableCell>Quest name</TableCell>
             <TableCell align="right">Time</TableCell>
-            <TableCell align="right">start</TableCell>
+            <TableCell align="right">Start</TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
