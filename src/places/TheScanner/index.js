@@ -1,29 +1,96 @@
 import React from 'react';
-import Paper from '@material-ui/core/Paper';
-import { makeStyles } from '@material-ui/core/styles';
-
-import { getX, getY } from "../../functions/scanner/coords.js"
-
+import PropTypes from 'prop-types';
+import SwipeableViews from 'react-swipeable-views';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-const boxWithMapProps = {
-  bgcolor: 'background.paper',
-  m: 1,
-  style: { width: (window.innerWidth - 45), height: (window.innerWidth - 45) },
-  borderColor: 'text.primary',
+
+import TheScannerMap from './map/index.js'
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <Typography
+      component="div"
+      role="tabpanel"
+      hidden={value !== index}
+      id={`full-width-tabpanel-${index}`}
+      aria-labelledby={`full-width-tab-${index}`}
+      {...other}
+    >
+      {value === index && <Box p={3}>{children}</Box>}
+    </Typography>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired,
 };
 
-const oneGridProps = {
-  bgcolor: 'background.paper',
-  //m: 1,
-  style: { width: (boxWithMapProps.style.width/10), height: (boxWithMapProps.style.height/10) },
-  borderColor: 'text.primary',
-};
-export default function TheScanner_index() {
-    return (
-        <Box id="boxWithMap" border={1} height={100} width="100%" {...boxWithMapProps} >
-            <Box border={1} {...oneGridProps}>
-                
-            </Box>
-        </Box>
-    );
+function a11yProps(index) {
+  return {
+    id: `full-width-tab-${index}`,
+    'aria-controls': `full-width-tabpanel-${index}`,
+  };
+}
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    backgroundColor: theme.palette.background.paper,
+    width: document.innerWidth-15,
+  },
+}));
+
+export default function FullWidthTabs() {
+  const classes = useStyles();
+  const theme = useTheme();
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const handleChangeIndex = index => {
+    setValue(index);
+  };
+
+  return (
+    <div className={classes.root}>
+      <AppBar position="static" color="default">
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          indicatorColor="primary"
+          textColor="primary"
+          variant="fullWidth"
+          aria-label="full width tabs example"
+        >
+          <Tab label="Bag" {...a11yProps(0)} />
+          <Tab label="Alerts" {...a11yProps(1)} />
+          <Tab label="Map" {...a11yProps(2)} />
+        </Tabs>
+      </AppBar>
+      <SwipeableViews
+        axis={theme.direction === 'rtl' ? 'x-reverse' : 'x'}
+        index={value}
+        onChangeIndex={handleChangeIndex}
+      >
+        <TabPanel value={value} index={0} dir={theme.direction}>
+          {/*TODO: Menu with collected items and other stats.*/}
+        </TabPanel>
+        <TabPanel value={value} index={1} dir={theme.direction}>
+          {/*TODO: Notifications*/}
+        </TabPanel>
+        <TabPanel value={value} index={2} dir={theme.direction}>
+          <TheScannerMap />
+        </TabPanel>
+      </SwipeableViews>
+    </div>
+  );
 }

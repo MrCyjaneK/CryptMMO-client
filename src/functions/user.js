@@ -10,6 +10,6 @@ export default async function user() {
     }
     let response = post(request);
     //post(request)
-    console.log(response);
+    //console.log(response);
     return response.response;
 }

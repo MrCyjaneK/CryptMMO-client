@@ -12,6 +12,9 @@ import ShowInventoryItem from '../places/ShowInventoryItem.js';
 import Hero from "../places/Hero.js";
 import Inventory from "../places/Inventory.js";
 import InventoryCategory from "../places/InventoryCategory.js";
+import Battle from "../places/Battle.js";
+import AttackUser from "../places/AttackUser.js";
+
 
 import TheScanner_index from '../places/TheScanner/index.js';
 
@@ -68,25 +71,37 @@ export default function renderGameContent (act) {
     if (action === 'thescanner/index') {
         ReactDOM.render(
             <TheScanner_index />
-        , document.getElementById('gamecontent')); // I think that it should be root...
+        , document.getElementById('root')); // I think that it should be root/gamecontent...
         return true;
     }
     if (action === 'hero') {
         ReactDOM.render(
             <Hero />
-        , document.getElementById('gamecontent')); // I think that it should be root...
+        , document.getElementById('gamecontent'));
         return true;
     }
     if (action === 'inventory') {
         ReactDOM.render(
             <Inventory />
-        , document.getElementById('gamecontent')); // I think that it should be root...
+        , document.getElementById('gamecontent'));
         return true;
     }
     if (action === 'inventorycategory') {
         ReactDOM.render(
-            <InventoryCategory />
-        , document.getElementById('gamecontent')); // I think that it should be root...
+            InventoryCategory(act.split(',')[1])
+        , document.getElementById('gamecontent'));
+        return true;
+    }
+    if (action === 'battle') {
+        ReactDOM.render(
+            <Battle />
+        , document.getElementById('gamecontent'));
+        return true;
+    }
+    if (action === 'attackuser') {
+        ReactDOM.render(
+            <AttackUser id={act.split(',')[1]} />
+        , document.getElementById('gamecontent'));
         return true;
     }
     return false;
