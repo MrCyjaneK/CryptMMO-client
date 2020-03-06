@@ -10,6 +10,8 @@ import Bank from '../places/Bank.js';
 import Quest from '../places/Quest.js';
 import ShowInventoryItem from '../places/ShowInventoryItem.js';
 import Hero from "../places/Hero.js";
+import Inventory from "../places/Inventory.js";
+import InventoryCategory from "../places/InventoryCategory.js";
 
 import TheScanner_index from '../places/TheScanner/index.js';
 
@@ -72,6 +74,18 @@ export default function renderGameContent (act) {
     if (action === 'hero') {
         ReactDOM.render(
             <Hero />
+        , document.getElementById('gamecontent')); // I think that it should be root...
+        return true;
+    }
+    if (action === 'inventory') {
+        ReactDOM.render(
+            <Inventory />
+        , document.getElementById('gamecontent')); // I think that it should be root...
+        return true;
+    }
+    if (action === 'inventorycategory') {
+        ReactDOM.render(
+            <InventoryCategory />
         , document.getElementById('gamecontent')); // I think that it should be root...
         return true;
     }

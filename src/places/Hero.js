@@ -17,7 +17,7 @@ export default function Hero() {
     return (
         <div className={classes.hero}>
         {/*#TODO: Put some stats in here or whatever...*/}
-        <Button variant="contained" color="primary" onClick={((e) => handleClick(e,"Inventory"))}>
+        <Button variant="contained" color="primary" onClick={((e) => handleClick(e,"render:Inventory"))}>
             Inventory
         </Button>
         </div>

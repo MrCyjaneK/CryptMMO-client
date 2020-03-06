@@ -21,9 +21,8 @@ const oneGridProps = {
 export default function TheScanner_index() {
     return (
         <Box id="boxWithMap" border={1} height={100} width="100%" {...boxWithMapProps} >
-            {/*TODO: Render 100 squares to fit the boxWithMap box*/}
             <Box border={1} {...oneGridProps}>
-                <p>0|0</p>
+                
             </Box>
         </Box>
     );
