@@ -9,6 +9,8 @@ import LocalMallIcon from '@material-ui/icons/LocalMall';
 import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import AdbIcon from '@material-ui/icons/Adb';
 import OutdoorGrillIcon from '@material-ui/icons/OutdoorGrill';
+import DirectionsWalkIcon from '@material-ui/icons/DirectionsWalk';
+
 
 
 
@@ -53,6 +55,10 @@ export default function GetIcon(props) {
         case 'OutdoorGrill':
             return (
                 <OutdoorGrillIcon/>
+            );
+        case 'Walk':
+            return (
+                <DirectionsWalkIcon />
             );
         default:
             return (

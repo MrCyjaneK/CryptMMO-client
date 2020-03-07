@@ -14,6 +14,7 @@ import Inventory from "../places/Inventory.js";
 import InventoryCategory from "../places/InventoryCategory.js";
 import Battle from "../places/Battle.js";
 import AttackUser from "../places/AttackUser.js";
+import Walk from "../places/Walk.js";
 
 
 import TheScanner_index from '../places/TheScanner/index.js';
@@ -101,6 +102,12 @@ export default function renderGameContent (act) {
     if (action === 'attackuser') {
         ReactDOM.render(
             <AttackUser id={act.split(',')[1]} />
+        , document.getElementById('gamecontent'));
+        return true;
+    }
+    if (action === 'walk') {
+        ReactDOM.render(
+            <Walk />
         , document.getElementById('gamecontent'));
         return true;
     }

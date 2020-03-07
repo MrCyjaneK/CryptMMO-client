@@ -41,12 +41,12 @@ export default function getMenuArray () {
                         "key": "drawerHero",
                         "action": "render:Hero"
                     },
-                    {
-                        "text": "Scanner",
-                        "icon": "Public",
-                        "key": "drawerTheScanner",
-                        "action": "render:TheScanner/index"
-                    }
+                    //{
+                    //    "text": "Scanner",
+                    //    "icon": "Public",
+                    //    "key": "drawerTheScanner",
+                    //    "action": "render:TheScanner/index"
+                    //}
                 ]
             ]
         },
