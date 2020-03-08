@@ -11,25 +11,39 @@ import Button from '@material-ui/core/Button';
 import post from '../functions/request.js';
 import handleClick from '../functions/handleClick.js';
 
+import {getCached, storeCached} from '../functions/cache.js';
+
+let response;
+let rows = [];
+
 let request = {
     "urid": "UniqueRequestId",
     "method": "getShopCategories",
     "params": null
 }
 
-let response;
-let rows = [];
-try {
-    response = post(request);
+if (getCached(`places.Shop.categories`)) {
+    response = JSON.parse(getCached(`places.Shop.categories`));
     // eslint-disable-next-line
     response.response.categories.map((category) => {
         //                     Name         , Description        , ID
         rows.push(createData(category.name,category.description,category.id));
     })
-} catch (e) {
-    response = [];
+} else {
+    try {
+
+        response = post(request);
+        storeCached(`places.Shop.categories`,JSON.stringify(response))
+        // eslint-disable-next-line
+        response.response.categories.map((category) => {
+            //                     Name         , Description        , ID
+            rows.push(createData(category.name,category.description,category.id));
+        })
+    } catch (e) {
+        response = [];
+    }
 }
-//console.log(rows)
+
 export default function Shop(props) {
     if (response === []) {
         response = post(request);

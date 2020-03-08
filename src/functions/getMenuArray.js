@@ -41,6 +41,12 @@ export default function getMenuArray () {
                         "key": "drawerHero",
                         "action": "render:Hero"
                     },
+                    {
+                        "text": "Town",
+                        "icon": "Map",
+                        "key": "drawerTown",
+                        "action": "render:Town"
+                    },
                     //{
                     //    "text": "Scanner",
                     //    "icon": "Public",

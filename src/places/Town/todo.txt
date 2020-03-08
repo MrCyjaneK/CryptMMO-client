@@ -1,0 +1,28 @@
+Citizens Market
+    - Allow users to search by
+        - Category
+        - Type (Common, rare, epic etc.)
+        - Level
+        - Price
+        - Item name
+
+Game Centre
+    - Add few gambling games like:
+        - Dice
+            - ...
+        - 50/50
+            - ...
+        - 3 cups
+            - ...
+
+Robin The Hoodie
+    - "He steals from rich and give it to poor"
+    - Display some ads -_- or something and reward users
+    - Allow users to open chests
+    - Add daily rewards
+
+Dark Cobweb
+    - Add some illegal stuff, (no idea what yet)
+    - Pay with illegal, untracable "paper money"
+    - Investment websites
+    - TODO: Allow users to host their own Cobweb sites (Yup this is to do in to do)

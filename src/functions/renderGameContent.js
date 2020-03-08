@@ -16,8 +16,9 @@ import Battle from "../places/Battle.js";
 import AttackUser from "../places/AttackUser.js";
 import Walk from "../places/Walk.js";
 
+import TheScannerIndex from '../places/TheScanner/index.js';
 
-import TheScanner_index from '../places/TheScanner/index.js';
+import TownIndex from '../places/Town/Index.js';
 
 export default function renderGameContent (act) {
     let action = act.split(',')[0].toLowerCase();
@@ -71,7 +72,7 @@ export default function renderGameContent (act) {
     }
     if (action === 'thescanner/index') {
         ReactDOM.render(
-            <TheScanner_index />
+            <TheScannerIndex />
         , document.getElementById('root')); // I think that it should be root/gamecontent...
         return true;
     }
@@ -108,6 +109,12 @@ export default function renderGameContent (act) {
     if (action === 'walk') {
         ReactDOM.render(
             <Walk />
+        , document.getElementById('gamecontent'));
+        return true;
+    }
+    if (action === 'town') {
+        ReactDOM.render(
+            <TownIndex />
         , document.getElementById('gamecontent'));
         return true;
     }

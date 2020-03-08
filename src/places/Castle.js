@@ -4,19 +4,27 @@ import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/ButtonGroup';
 import GetIcon from "../functions/GetIcon.js"
 import handleClick from '../functions/handleClick.js';
-//TODO: Make api request to get all buttons in here.
 import post from '../functions/request.js';
-// In some rare cases we can cache it for later...
+
+import {getCached, storeCached} from '../functions/cache.js';
+
+// Cache it...
 //Because it is less likely that menu will be updated that quickly...
 let request = {
     "urid": "UniqueRequestId",
     "method": "getCastleMenu",
     "params": null
 }
+
 let menuarray;
 try {
-    menuarray = post(request);
-    menuarray = menuarray.response.menu;
+    if (getCached(`places.Castle.manuarray`) === 0) {
+        menuarray = post(request);
+        menuarray = menuarray.response.menu;
+        storeCached(`places.Castle.manuarray`,JSON.stringify(menuarray))
+    } else {
+        menuarray = JSON.parse(getCached(`places.Castle.manuarray`))
+    }
 } catch (e) {
     menuarray = [];
 }

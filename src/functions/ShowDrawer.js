@@ -41,7 +41,7 @@ const useStyles = makeStyles(theme => ({
     }),
   },
   menuButton: {
-    marginRight: theme.spacing(2),
+    marginRight: theme.spacing(0),
   },
   hide: {
     display: 'none',
@@ -62,7 +62,7 @@ const useStyles = makeStyles(theme => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(0.5),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -83,7 +83,7 @@ export default function ShowDrawer() {
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
-  
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -135,7 +135,7 @@ export default function ShowDrawer() {
                 <div key={i}>
                     <List key={"list"+i}>
                     {
-                        submenu.map((item, j) => 
+                        submenu.map((item, j) =>
                             (
                                 <ListItem button key={item.key} onClick={((e) => {handleClick(e, item.action); handleDrawerClose()})}>
                                     <ListItemIcon><GetIcon name={item.icon} /></ListItemIcon>

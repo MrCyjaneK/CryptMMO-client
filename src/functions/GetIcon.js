@@ -10,6 +10,10 @@ import AccountBalanceIcon from '@material-ui/icons/AccountBalance';
 import AdbIcon from '@material-ui/icons/Adb';
 import OutdoorGrillIcon from '@material-ui/icons/OutdoorGrill';
 import DirectionsWalkIcon from '@material-ui/icons/DirectionsWalk';
+import CasinoIcon from '@material-ui/icons/Casino';
+import MonetizationOnIcon from '@material-ui/icons/MonetizationOn';
+import DomainDisabledIcon from '@material-ui/icons/DomainDisabled';
+
 
 
 
@@ -20,6 +24,18 @@ import ErrorIcon from '@material-ui/icons/Error';
 
 export default function GetIcon(props) {
     switch (props.name) {
+        case 'DomainDisabled':
+            return (
+                <DomainDisabledIcon/>
+            );
+        case 'MonetizationOnIcon':
+            return (
+                <MonetizationOnIcon/>
+            );
+        case 'Casino':
+            return (
+                <CasinoIcon/>
+            );
         case 'Home':
             return (
                 <HomeIcon/>

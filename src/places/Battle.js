@@ -46,6 +46,7 @@ while (Math.random() < 0.95) {
     })
 }
 let rows = []
+// eslint-disable-next-line
 response.response.map(enemy => {
     rows.push(createData(enemy.id,enemy.name,enemy.lvl))
 })
