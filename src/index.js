@@ -9,19 +9,17 @@ import user from './functions/user.js';
 import renderDialog from './functions/renderDialog.js';
 
 try {
-user()
-    .then(fetchedUser => {
-        if (fetchedUser.loggedin) {
-            ReactDOM.render(
-                <ShowDrawer />
-            , document.getElementById('root'));
-            renderGameContent('home');
-        } else {
+    let fetchedUser = user();
+    if (fetchedUser.loggedin) {
+        ReactDOM.render(
+            <ShowDrawer />
+        , document.getElementById('root'));
+        renderGameContent('home');
+    } else {
         ReactDOM.render(
             <SignIn />
-        , document.getElementById('root'));
-        }
-    })
+            , document.getElementById('root'));
+    }
 } catch (e) {
     console.error(e);
     renderDialog("Error with initializing game roots, try cleaning cookies.", "Engine crashed!", 'alert');

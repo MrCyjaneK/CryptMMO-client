@@ -23,7 +23,7 @@ export default function Walk() {
     const [buttonEnabled, setButtonEnabled] = useState(1);
     return (
         <div>
-            <img alt="" src={backgrounds[0]} width={window.innerWidth-50} />
+            <img alt="" src={backgrounds[0]} width={window.innerWidth-8} />
             <p>{text}</p>
             <Button id="takeastepbtn" variant="contained" color="secondary" disabled={!buttonEnabled} onClick={(() => { takeAStep(setText,setButtonText,setButtonEnabled) })}>
                 {buttonText}
